@@ -1,0 +1,7 @@
+LICENSE
+README.md
+setup.py
+blendie.egg-info/PKG-INFO
+blendie.egg-info/SOURCES.txt
+blendie.egg-info/dependency_links.txt
+blendie.egg-info/top_level.txt
