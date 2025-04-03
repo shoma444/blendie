@@ -1,4 +1,4 @@
-# blender
+# blendie
 Python scripts for blending stability classes used in Gaussian Dispersion Models.
 
 Created by Shoma Yamanouchi (shoma.yamanouchi@ec.gc.ca)
