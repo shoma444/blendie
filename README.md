@@ -14,7 +14,7 @@ This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorolog
 
 Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
 
-The main function of this package is: get_stability(lat,lon,xtime,HRRRpath).
+The main function of this package is: get_stability(latitude, longitude, timestamp, path_to_save_HRRR_data).
 
 The inputs of this function are: latitude (float or string of numbers), longitude (float or string of numbers), timestamp (string or datetime.datetime), path_to_HRRRpath (string), and it will return a list of length 4, of the form [class1 (str), weight1 (float), class2 (str), weight2 (float)] (weights will be 0.<=x<=1.). The timestamp should be of the form yyyy-mm-ddthh OR datetime.datetime object. If no blending, then weight1 = 1.0 and class2 = 'FALSE'.
 
