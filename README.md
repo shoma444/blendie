@@ -21,11 +21,16 @@ The inputs of this function are: latitude (float or string of numbers), longitud
 Run the main.py to test the package. The results should look something like:
 
 Testing...
-        Test conducted for: 43.781092539863025 (lat), -79.4682135538496 (lon), on: 2024-11-11t10
+
+  Test conducted for: 43.781092539863025 (lat), -79.4682135538496 (lon), on: 2024-11-11t10
+  
 HRRR data not found, attempting to download...
 ✅ Found ┊ model=hrrr ┊ product=nat ┊ 2024-Nov-11 10:00 UTC F00 ┊ GRIB2 @ google ┊ IDX @ google
 👨🏻‍🏭 Created directory: [hrrr/20241111]
-                PBL, frictional velocity, convective velocity, LMO, coriolis, z0:  555.89825 0.42 1.0329707536125516 -37.366211195124826 0.0001 0.5
-                Wind speed, direction:  5.218844608196581 236.46394794175023
-                 ['B', 0.7924253315186035, 'C', 0.2075746684813964]
+                
+   PBL, frictional velocity, convective velocity, LMO, coriolis, z0:  555.89825 0.42 1.0329707536125516 -37.366211195124826 0.0001 0.5
+   
+   Wind speed, direction:  5.218844608196581 236.46394794175023
+
+   ['B', 0.7924253315186035, 'C', 0.2075746684813964]
 
