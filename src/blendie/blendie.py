@@ -119,7 +119,7 @@ def get_meteo_all(lat,lon,xtime,HRRRpath):
 
     
     grav = 9.81 # m/s/s, gravitational acceleration
-    R = 287.0 # gravitational constant
+    R = 287.0 # specific gas constant
     kappa = 0.40 # Von Karman constant
     Cp = 1003.5 # specific heat of air at constant pressure
 
