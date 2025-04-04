@@ -1,4 +1,4 @@
-# blendie
+# BLENDIE
 Python script for blending stability classes used in Gaussian Dispersion Models.
 
 Created by Shoma Yamanouchi (shoma.yamanouchi@ec.gc.ca)
@@ -27,7 +27,7 @@ NOTE: The grib2io package is a required dependency, and it requires an external 
 
 conda install -c conda-forge nceplibs-g2c
 
-The installing blendie can simply be done via the pip install command:
+Installing blendie can simply be done via the pip install command:
 
 pip install ./dist/blendie-0.0.2.tar.gz
 
@@ -49,6 +49,8 @@ longitude (float or string of numbers),
 timestamp (string or datetime.datetime), and 
 
 path_to_save_HRRR_data (string).
+
+
 
 The function will return a list of length 4, of the form: 
 
