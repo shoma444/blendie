@@ -6,8 +6,6 @@ Created by Shoma Yamanouchi (shoma.yamanouchi@ec.gc.ca)
 Requirements:
 Python 3+ (3.9+ recommended), numpy, datetime, metpy, herbie, grib2io
 
-Linux environment is required.
-
 IMPORTANT NOTICE: This package will ONLY work in North America
 
 #
@@ -58,7 +56,7 @@ The timestamp should be of the form yyyy-mm-ddthh (note that the letter "t" sepa
 
 #
 
-Run the main.py to test the package. The results should look something like:
+Run the /src/blendie/blendie.py file to test the package. The results should look something like:
 
 Testing...
 
