@@ -8,14 +8,16 @@ Python 3+ (3.9+ recommended), numpy, datetime, metpy, herbie, grib2io
 
 IMPORTANT NOTICE: This package will ONLY work in North America
 
+#
+#
 
 Package Overview:
 This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorological data to obtain the Obukhov length and surface roughness to estimate the stability class of the atmosphere, to be used in Gaussian dispersion models. 
 
 Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
 
-
-
+#
+#
 
 INSTALLATION:
 
@@ -23,18 +25,14 @@ NOTE: The grib2io package is a required dependency, and it requires an external 
 
 conda install -c conda-forge nceplibs-g2c
 
-and then:
-
-conda install -c conda-forge grib2io
-
 The installing blendie can simply be done via the pip install command:
 
 pip install ./dist/blendie-0.0.2.tar.gz
 
 while in the same directory as the /dist folder. If errors regarding missing libraries (e.g., libg2c.so) are raised, try reinstallilng nceplibs-g2c, as that is likely the culprit.
 
-
-
+#
+#
 
 USAGE:
 
@@ -55,6 +53,8 @@ The function will return a list of length 4, of the form:
 [class1 (str), weight1 (float), class2 (str), weight2 (float)] (weights will be 0.0 <= x <= 1.0). 
 
 The timestamp should be of the form yyyy-mm-ddthh (note that the letter "t" separates the day and hour, e.g., 2021-12-25t19) OR a datetime.datetime object. If the result is that no blending should be done, then weight1 = 1.0 and class2 = 'FALSE'.
+
+#
 
 Run the main.py to test the package. The results should look something like:
 
