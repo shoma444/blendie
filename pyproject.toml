@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling >= 1.27", "hatch-external-dependencies"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.hooks.external-dependencies]
+
+[metadata]
+license-expression = "MIT"
+
+
+[project]
+name = "blendie"
+version = "0.0.2"
+authors = [
+  { name="Shoma Yamanouchi", email="shoma.yamanouchi@ec.gc.ca" },
+]
+external-dependencies = ["conda-forge/linux-64::nceplibs-g2c", ]
+dependencies = [
+"numpy>=1.24.3",
+"datetime>=5.1",
+"metpy>=1.6.3",
+"herbie-data>=2024.8.0",
+"pyproj",
+"grib2io>=2.3.0,<2.4.0",
+]
+description = "Python script for blending stability classes used in Gaussian Dispersion Models"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENCE"]
+
+[project.urls]
+Homepage = "https://github.com/shoma444/blendie/"

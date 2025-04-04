@@ -1,21 +1,23 @@
 Metadata-Version: 2.4
 Name: blendie
 Version: 0.0.1
+Summary: Python script for blending stability classes used in Gaussian Dispersion Models
 Home-page: https://github.com/shoma444/blendie
 Author: Shoma Yamanouchi
-Author-email: shoma.yamanouchi@ec.gc.ca
+Author-email: Shoma Yamanouchi <shoma.yamanouchi@ec.gc.ca>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/shoma444/blendie/
 Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
-License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: datetime
+Requires-Dist: metpy
+Requires-Dist: herbie
+Requires-Dist: grib2io
 Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: description
-Dynamic: description-content-type
 Dynamic: home-page
-Dynamic: license-file
 
 # blendie
 Python script for blending stability classes used in Gaussian Dispersion Models.

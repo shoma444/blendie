@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/blendie/__init__.py
+src/blendie/blendie.py
+src/blendie/util.py
+src/blendie.egg-info/PKG-INFO
+src/blendie.egg-info/SOURCES.txt
+src/blendie.egg-info/dependency_links.txt
+src/blendie.egg-info/requires.txt
+src/blendie.egg-info/top_level.txt

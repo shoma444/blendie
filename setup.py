@@ -19,7 +19,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="blendie",
-    version="0.0.1",
+    version="0.0.2",
     author="Shoma Yamanouchi",
     author_email="shoma.yamanouchi@ec.gc.ca",
     description="",
@@ -33,3 +33,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
 )
+
+if __name__ == "__main__":
+    setuptools.setup()
