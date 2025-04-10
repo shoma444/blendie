@@ -1,14 +1,14 @@
 # BLENDIE
-### Python script for blending stability classes used in Gaussian Dispersion Models.
+Python script for blending stability classes used in Gaussian Dispersion Models.
 
-### Created by Shoma Yamanouchi (shoma.yamanouchi@ec.gc.ca)
+Created by Shoma Yamanouchi (shoma.yamanouchi@ec.gc.ca)
 
 Requirements:
 Python 3.9+,  numpy, datetime, metpy, herbie, grib2io
 
 Also requires a Linux environment to run
 
-### IMPORTANT NOTICE: This package will ONLY work in North America
+IMPORTANT NOTICE: This package will ONLY work in North America
 
 #
 #
