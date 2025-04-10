@@ -14,14 +14,14 @@ IMPORTANT NOTICE: This package will ONLY work in North America
 #
 
 ## Package Overview:
-This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorological data to obtain the Obukhov length and surface roughness to estimate the stability class of the atmosphere, to be used in Gaussian dispersion models. 
+This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorological data to obtain the Obukhov length and surface roughness to estimate the stability class of the atmosphere, to be used in Gaussian dispersion models. The stability classes are blended to give a more continuous, less discretized description of the atmosphere.
 
 Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
 
 #
 #
 
-## INSTALLATION:
+## Installation:
 
 NOTE: The grib2io package is a required dependency, and it requires an external NCEPLIBS-g2c library to work (https://pypi.org/project/grib2io/). For easiest access we suggest installing these via the Anaconda ecosystem:
 ```
@@ -36,7 +36,7 @@ while in the same directory as the /dist folder. If errors regarding missing lib
 #
 #
 
-## USAGE:
+## Usage:
 
 The main function of this package is: get_stability(latitude, longitude, timestamp, path_to_save_HRRR_data).
 
