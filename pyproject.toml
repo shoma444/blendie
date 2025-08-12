@@ -10,7 +10,7 @@ license-expression = "MIT"
 
 [project]
 name = "blendie"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
   { name="Shoma Yamanouchi", email="shoma.yamanouchi@ec.gc.ca" },
 ]

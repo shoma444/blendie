@@ -103,59 +103,75 @@ def get_meteo_all(lat,lon,xtime,HRRRpath):
     def dist(A,B):
         return ((A[0]-B[0])**2 + (A[1]-B[1])**2) ** 0.5
     
-    x,y,finX,finY = 0,0,0,0
-    L = 1e10
-    while x < len(lats):
-        while y < len(lats[0]):
-            d = dist( (lats[x][y],lons[x][y]), (lat,lon) )
-            if d<L:
-                L = d
-                finX,finY = x,y
-            else:
-                pass
-            y+=1
-        y = 0
-        x+=1
+    #x,y,finX,finY = 0,0,0,0
+    #L = 1e10
+    #while x < len(lats):
+        #while y < len(lats[0]):
+            #d = dist( (lats[x][y],lons[x][y]), (lat,lon) )
+            #if d<L:
+                #L = d
+                ##print(L,x,y,lats[x][y],lons[x][y])
+                #finX,finY = x,y
+            #else:
+                #pass
+            #y+=1
+        #y = 0
+        #x+=1
 
-    
-    grav = 9.81 # m/s/s, gravitational acceleration
-    R = 287.0 # specific gas constant
-    kappa = 0.40 # Von Karman constant
-    Cp = 1003.5 # specific heat of air at constant pressure
+    dist_xy = []
 
-    pressure = g[1031].data[finX,finY] # read pressure
-    humidity_spec = g[1042].data[finX,finY] # read specific humidity
-    Temp = g[1033].data[finX,finY] # read temp
-    PBLH = g[1112].data[finX,finY] # read PHL height
-    friction = g[1064].data[finX,finY] # read friction velocity
-    S = g[1067].data[finX,finY] # read ground heat flux
-    z0 = g[1063].data[finX,finY]
-    coriolis = 1e-4
-    #rho = 1 # read density
+    for i in range(len(lats)):
+        for j in range(len(lats[0])):
+            dist_xy.append([dist((lats[i][j],lons[i][j]), (lat,lon)), i, j])
+
+    dist_xy = sorted(dist_xy, key=lambda x: x[0])
+    finX = dist_xy[0][1]
+    finY = dist_xy[0][2]
 
     def cube(x):
         if 0<=x: 
             return x**(1./3.)
         else:
             return -(-x)**(1./3.)
-        
-    bad_output = False    
     
-    rho = (pressure * 0.0289652) / (8.31446261815324 * Temp)
-    q = S / (Cp * rho) # derive sensible heat flux (has units of K*m/s)
-    T_virt = Temp * (0.608*humidity_spec + 1) # virtual temperature
-    theta_virt = T_virt * (pressure/100000.0)**( -2./7.)# virtual potential temperature
-    Zm = PBLH
-    #print(Temp,S,q,humidity_spec,pressure,T_virt,theta_virt)
-    convective = cube((q*grav*Zm) / (theta_virt))
+    grav = 9.81 # m/s/s, gravitational acceleration
+    R = 287.0 # specific gas constant
+    kappa = 0.40 # Von Karman constant
+    Cp = 1003.5 # specific heat of air at constant pressure
+
+    nearest_valid_hrrr_pixel = 0
+    convective = 0
+
+    while convective == 0:
+        if(nearest_valid_hrrr_pixel >= len(dist_xy)):
+            raise Exception("HRRR data invalid... Please check the HRRR data")
+            break
+
+        finX, finY = dist_xy[nearest_valid_hrrr_pixel][1], dist_xy[nearest_valid_hrrr_pixel][2]
+
+        pressure = g[1031].data[finX,finY] # read pressure
+        humidity_spec = g[1042].data[finX,finY] # read specific humidity
+        Temp = g[1033].data[finX,finY] # read temp
+        PBLH = g[1112].data[finX,finY] # read PHL height
+        friction = g[1064].data[finX,finY] # read friction velocity
+        S = g[1067].data[finX,finY] # read ground heat flux
+        z0 = g[1063].data[finX,finY]
+        coriolis = 1e-4
+        #rho = 1 # read density
+
+        rho = (pressure * 0.0289652) / (8.31446261815324 * Temp)
+        q = S / (Cp * rho) # derive sensible heat flux (has units of K*m/s)
+        T_virt = Temp * (0.608*humidity_spec + 1) # virtual temperature
+        theta_virt = T_virt * (pressure/100000.0)**( -2./7.)# virtual potential temperature
+        Zm = PBLH
+        convective = cube((q*grav*Zm) / (theta_virt))
+
+        nearest_valid_hrrr_pixel += 1
+        
+
+    print("Using the number " + str(nearest_valid_hrrr_pixel) + " closest HRRR pixel")
     LMO = -Zm * ( ( (friction) / (convective) ) ** 3 )
 
-    if(convective != 0):
-        LMO = -Zm * ( ( (friction) / (convective) ) ** 3 )
-    else:
-        LMO = 0
-        print('Warning: Ground heat flux from HRRR is zero. LMO will be set to 0.')
-        bad_output = True
     u = g[1046].data[finX,finY]
     v = g[1047].data[finX,finY]
 
@@ -163,8 +179,7 @@ def get_meteo_all(lat,lon,xtime,HRRRpath):
 
     wd = float( wind_direction(u*(units('m/s')),v*(units('m/s'))).magnitude )
 
-
-    return PBLH, friction, convective, LMO, coriolis, ws, wd, z0, bad_output
+    return PBLH, friction, convective, LMO, coriolis, ws, wd, z0
 
 
 def get_meteo_wind(lat,lon,xtime,HRRRpath):
@@ -172,7 +187,7 @@ def get_meteo_wind(lat,lon,xtime,HRRRpath):
     # timestamp should be of the form yyyy-mm-ddthh OR datetime.datetime object
     # Returns: ws, wd (both float)
 
-    PBLH, friction, convective, LMO, coriolis, ws, wd, z0, bad_output = get_meteo_all(lat,lon,xtime,HRRRpath)
+    PBLH, friction, convective, LMO, coriolis, ws, wd, z0 = get_meteo_all(lat,lon,xtime,HRRRpath)
     return ws, wd
 
 def get_meteo_obukhov(lat,lon,xtime,HRRRpath):
@@ -180,7 +195,7 @@ def get_meteo_obukhov(lat,lon,xtime,HRRRpath):
     # timestamp should be of the form yyyy-mm-ddthh OR datetime.datetime object
     # Returns: LMO (Obukhov length) (float)
 
-    PBLH, friction, convective, LMO, coriolis, ws, wd, z0, bad_output = get_meteo_all(lat,lon,xtime,HRRRpath)
+    PBLH, friction, convective, LMO, coriolis, ws, wd, z0 = get_meteo_all(lat,lon,xtime,HRRRpath)
     return LMO
 
 def get_meteo_roughness(lat,lon,xtime,HRRRpath):
@@ -188,7 +203,7 @@ def get_meteo_roughness(lat,lon,xtime,HRRRpath):
     # timestamp should be of the form yyyy-mm-ddthh OR datetime.datetime object
     # Returns: z0 (surface roughness length) (float)
 
-    PBLH, friction, convective, LMO, coriolis, ws, wd, z0, bad_output = get_meteo_all(lat,lon,xtime,HRRRpath)
+    PBLH, friction, convective, LMO, coriolis, ws, wd, z0 = get_meteo_all(lat,lon,xtime,HRRRpath)
     return z0
 
 def calculate_weights(z0,L):
@@ -360,12 +375,8 @@ def get_stability(lat,lon,xtime,HRRRpath):
     # Returned list is of the form [class1 (str), weight1 (float), class2 (str), weight2 (float)] (weights will be 0.<=x<=1.)
     # If no blending, then weight1 = 1.0 and class2 = 'FALSE
 
-    pbl, friction, convective, LMO, coriolis, ws, wd, z0, bad_output = get_meteo_all(lat,lon,xtime,HRRRpath)
-    if bad_output:
-        results = ['D','1.0','FALSE','0.0']
-        print('Warning: Ground heat flux from HRRR is zero. Returning the default stability class D.')
-    else:
-        results = calculate_weights(z0,LMO)
+    pbl, friction, convective, LMO, coriolis, ws, wd, z0 = get_meteo_all(lat,lon,xtime,HRRRpath)
+    results = calculate_weights(z0,LMO)
     return results
 
 if __name__ == "__main__":
@@ -379,7 +390,7 @@ if __name__ == "__main__":
     testtime = '2024-11-11t10'
     print('\tTest conducted for: '+str(lati)+' (lat), '+str(longi)+' (lon), on: '+testtime)
 
-    pbl, friction, convective, LMO, coriolis, ws, wd, z0, bad_output = get_meteo_all(lati,longi,testtime,'./')
+    pbl, friction, convective, LMO, coriolis, ws, wd, z0 = get_meteo_all(lati,longi,testtime,'./')
 
     print('\t\tPBL, frictional velocity, convective velocity, LMO, coriolis, z0: ', pbl, friction, convective, LMO, coriolis, z0)
     print('\t\tWind speed, direction: ', ws, wd)
