@@ -29,7 +29,7 @@ conda install -c conda-forge nceplibs-g2c
 ```
 Installing blendie can simply be done via the pip install command:
 ```
-pip install ./dist/blendie-0.0.2.tar.gz
+pip install ./dist/blendie-0.0.3.tar.gz
 ```
 while in the same directory as the /dist folder. If errors regarding missing libraries (e.g., libg2c.so) are raised, try reinstallilng nceplibs-g2c, as that is likely the culprit.
 
