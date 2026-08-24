@@ -18,6 +18,8 @@ This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorolog
 
 Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
 
+New with version 1.1.0, RAP (https://rapidrefresh.noaa.gov/) 12km resolution data can also be used. While lower in resolution than HRRR (which is 3km resolution), RAP offers wider coverage, coverging all of North America including Alaska, Northern areas of Canada, as well as Mexico.
+
 #
 #
 
@@ -29,7 +31,7 @@ conda install -c conda-forge nceplibs-g2c
 ```
 Installing blendie can simply be done via the pip install command:
 ```
-pip install ./dist/blendie-0.0.3.tar.gz
+pip install ./dist/blendie-1.1.0.tar.gz
 ```
 while in the same directory as the /dist folder. If errors regarding missing libraries (e.g., libg2c.so) are raised, try reinstallilng nceplibs-g2c, as that is likely the culprit.
 
@@ -38,7 +40,7 @@ while in the same directory as the /dist folder. If errors regarding missing lib
 
 ## Usage:
 
-The main function of this package is: get_stability(latitude, longitude, timestamp, path_to_save_HRRR_data).
+The main function of this package is: get_stability(latitude, longitude, timestamp, path_to_save_HRRR_data, model='HRRR or RAP, defaults to HRRR').
 
 
 The inputs of this function are: 

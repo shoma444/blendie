@@ -19,7 +19,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="blendie",
-    version="0.0.3",
+    version="1.1.0",
     author="Shoma Yamanouchi",
     author_email="shoma.yamanouchi@ec.gc.ca",
     description="",

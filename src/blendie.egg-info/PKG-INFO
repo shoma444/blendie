@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: blendie
-Version: 0.0.3
+Version: 1.1.0
 Summary: Python script for blending stability classes used in Gaussian Dispersion Models
 Author-email: Shoma Yamanouchi <shoma.yamanouchi@ec.gc.ca>
 License-Expression: MIT
@@ -30,6 +30,10 @@ Package Overview:
 This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorological data to obtain the Obukhov length and surface roughness to estimate the stability class of the atmosphere, to be used in Gaussian dispersion models. 
 
 Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
+
+Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
+
+New with version 1.1.0, RAP (https://rapidrefresh.noaa.gov/) 12km resolution data can also be used. While lower in resolution than HRRR (which is 3km resolution), RAP offers wider coverage, coverging all of North America including Alaska, Northern areas of Canada, as well as Mexico.
 
 The main function of this package is: get_stability(latitude, longitude, timestamp, path_to_save_HRRR_data).
 
