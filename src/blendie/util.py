@@ -18,7 +18,7 @@ from decimal import Decimal
 
 NUMBER_TYPES = (int, float, Decimal)
 
-__version__ = "1.1.3"
+__version__ = "1.1.0"
 __version_info__ = (1, 1, 0)
 
 logger = logging.getLogger('blendie')
