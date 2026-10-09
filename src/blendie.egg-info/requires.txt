@@ -1,5 +1,0 @@
-numpy
-datetime
-metpy
-herbie
-grib2io
