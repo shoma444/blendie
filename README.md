@@ -18,7 +18,7 @@ This Python package uses HRRRv4 (https://rapidrefresh.noaa.gov/hrrr/) meteorolog
 
 Other meteorological parameters (e.g., wind speed and direction) can also be obtained.
 
-New with version 1.1.0, RAP (https://rapidrefresh.noaa.gov/) 12km resolution data can also be used. While lower in resolution than HRRR (which is 3km resolution), RAP offers wider coverage, coverging all of North America including Alaska, Northern areas of Canada, as well as Mexico.
+New with version 1.1.0, RAP (https://rapidrefresh.noaa.gov/) 12km resolution data can also be used. While lower in resolution than HRRR (which is 3km resolution), RAP offers wider coverage, covering all of North America including Alaska, Northern areas of Canada, as well as Mexico.
 
 #
 #
